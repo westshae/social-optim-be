@@ -14,6 +14,9 @@ export class AuthEntity {
     @Column({nullable:true})
     passUsed: boolean;
 
+    @Column('boolean', {default: false})
+    userIsAdmin: boolean;
+
     @Column({nullable:true})
     profession: string;
 

@@ -110,6 +110,18 @@ export class AuthService {
     }
   }
 
+  async isUserAdmin(email:string){
+    try{
+      let account = await this.authRepo.findOne({ email: email });
+      if (account === undefined) return false;
+
+      return account.userIsAdmin;
+
+    }catch(e){
+      console.error(e);
+    }
+  }
+
 
   sendEmail(code: string, email: string) {
     var transporter = nodemailer.createTransport({

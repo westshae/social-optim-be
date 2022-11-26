@@ -28,6 +28,16 @@ export class AuthController {
     }
   }
 
+  @Get("isUserAdmin")
+  async isUserAdmin(@Query() query){
+    try{
+      let email = query.email;
+      return await this.authService.isUserAdmin(email);
+    }catch(e){
+      console.error(e);
+    }
+  }
+
   @Get("settings/get/")
   async settings(@Query() query){
     let email = query.email;
