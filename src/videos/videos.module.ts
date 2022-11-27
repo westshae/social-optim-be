@@ -9,4 +9,4 @@ import { VideosService } from "./videos.service";
   controllers: [VideosController],
   providers: [VideosService],
 })
-export class PostsModule {}
+export class VideosModule {}

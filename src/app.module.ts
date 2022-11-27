@@ -5,7 +5,8 @@ import { AppService } from "./app.service";
 import { DatabaseConnectionService } from "./database-connection.service";
 import { AuthModule } from "./auth/auth.module";
 import { PostsModule } from "./posts/posts.module";
-import { FeedModule } from "./feed/feed.module";
+import { VideosModule } from "./videos/videos.module";
+
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -13,7 +14,7 @@ import { FeedModule } from "./feed/feed.module";
     }),
     AuthModule,
     PostsModule,
-    FeedModule
+    VideosModule
   ],
   controllers: [AppController],
   providers: [AppService],
