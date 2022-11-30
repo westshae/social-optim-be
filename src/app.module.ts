@@ -4,7 +4,6 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { DatabaseConnectionService } from "./database-connection.service";
 import { AuthModule } from "./auth/auth.module";
-import { PostsModule } from "./posts/posts.module";
 import { VideosModule } from "./videos/videos.module";
 
 @Module({
@@ -13,7 +12,6 @@ import { VideosModule } from "./videos/videos.module";
       useClass: DatabaseConnectionService,
     }),
     AuthModule,
-    PostsModule,
     VideosModule
   ],
   controllers: [AppController],

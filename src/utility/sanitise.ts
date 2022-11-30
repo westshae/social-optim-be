@@ -9,29 +9,14 @@ const checkEmail = (email:string) =>{
   return true;
 }
 
-const checkPostID = (postID:string) =>{
-  let codeRegex = /^\d{8}$/;
-  if (typeof postID !== "string") return false;
-  if(!postID.match(codeRegex)) return false;
-  return true;
-}
-
-const checkStringContent = (content:string) =>{
-  if (typeof content !== "string") return false;
-  return true;
-}
-
 const checkToken = (email:string, token:string) =>{
   if(!checkEmail(email)) return false;
   try {
-    console.log(token);
     const decoded = jwt.verify(token, process.env.PRIVATEKEY);
-    console.log(decoded)
     if(decoded === null){
       return false;
     }else {
       if(decoded.email != email){
-        console.log(decoded.email);
         return false;
       }
       return true;
@@ -42,4 +27,4 @@ const checkToken = (email:string, token:string) =>{
   }
 }
 
-export {checkEmail, checkPostID, checkStringContent, checkToken}
+export {checkEmail, checkToken}
