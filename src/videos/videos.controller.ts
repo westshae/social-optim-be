@@ -8,7 +8,7 @@ import { VideosService } from "./videos.service";
 export class VideosController {
   constructor(private readonly videosService: VideosService) {}
 
-  @Get("get")
+  @Get("getVideo")
   async getVideo(@Query() query) {
     try {
       let videoId = query.videoId;
@@ -29,5 +29,10 @@ export class VideosController {
     } catch (e) {
       console.error(e);
     }
+  }
+
+  @Get("getChannelsBestVideos")
+  async getChannelsBestVideos(){
+    return await this.videosService.getChannelsBestVideos();
   }
 }

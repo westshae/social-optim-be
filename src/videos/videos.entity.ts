@@ -17,6 +17,9 @@ export class VideosEntity {
   @Column()
   views: number;
 
+  @Column("decimal")
+  ratio:number;
+
   @Column()
   channelVideoCount: number;
 }

@@ -3,7 +3,6 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { VideosEntity } from "./videos.entity";
 import { Repository } from "typeorm";
 import "dotenv/config";
-import { channel } from "diagnostics_channel";
 
 @Injectable()
 export class VideosService {
@@ -30,12 +29,30 @@ export class VideosService {
           channelName:json.channelName,
           subscribers: json.subscribers,
           views:json.views,
+          ratio: json.ratio,
           channelVideoCount:json.channelVideoCount
         }
         this.videosRepo.insert(toInsert);
+        await new Promise(r => setTimeout(r, 50));
       }catch(e){
         console.error(e);
       }
     }
+  }
+
+  async getChannelsBestVideos(){
+    const videos = await this.videosRepo
+      .createQueryBuilder('video')
+      .select("*")
+      .where("video.ratio > 1")
+      .where("video.subscribers < 50000")
+      .where("video.channelVideoCount < 50")
+      .orderBy('video.ratio', 'DESC')
+      .getRawMany()
+
+      // .where("video.ratio > 1 AND video.subscribers > 50000 AND video.channelVideoCount > 50")
+
+      
+    return videos;
   }
 }
